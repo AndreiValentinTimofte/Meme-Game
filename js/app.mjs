@@ -18,7 +18,6 @@ function MemeAssociation(memeId, captionId, points) {
     this.points = points;
 }
 
-
 class MemeCollection {
     constructor() {
         this.memes = [];
@@ -85,8 +84,6 @@ class MemeCollection {
         console.log("Captions have been sorted alphabetically.");
     }
 }
-
-
 
 // Instantiate our collection
 const myMemeCollection = new MemeCollection();

@@ -38,3 +38,4 @@ After the end of the game, the player may restart a new game.
 Logged users can create new associations of meme pictures (already contained in the database) and captions (new or existing), also defining the associated points.
 
 The organization of these specifications in different screens (and possibly on different routes) is left to the student.
+
