@@ -39,3 +39,20 @@ Logged users can create new associations of meme pictures (already contained in 
 
 The organization of these specifications in different screens (and possibly on different routes) is left to the student.
 
+### Database Schema
+The database for the Meme Game project consists of three main tables:
+
+**1. `memes` table**
+- **`id`**: INTEGER, PRIMARY KEY - Unique identifier for the meme picture.
+- **`url`**: TEXT - File path or URL to the meme image.
+- **`description`**: TEXT - A brief description of the meme.
+
+**2. `captions` table**
+- **`id`**: INTEGER, PRIMARY KEY - Unique identifier for the caption.
+- **`text`**: TEXT - The actual text of the caption.
+
+**3. `associations` table**
+- **`memeId`**: INTEGER - Foreign key referencing `memes.id`.
+- **`captionId`**: INTEGER - Foreign key referencing `captions.id`.
+- **`points`**: INTEGER - The score assigned for this specific meme-caption association (1, 2, or 3).
+- **PRIMARY KEY**: (`memeId`, `captionId`)

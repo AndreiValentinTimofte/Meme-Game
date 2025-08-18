@@ -1,14 +1,81 @@
+import sqlite from "sqlite3";
+import dayjs  from "dayjs";
+
+const db = new sqlite.Database(('../memes.db'), (err) => {
+    if (err)
+        return err;
+    else 
+        console.log("Connected to database");
+});
+
 // Constructor function for a MemePicture
 function MemePicture(id, url, description) {
     this.id = id;
     this.url = url;
     this.description = description;
-}
 
+
+    this.getMemes = () => {
+        return new Promise((resolve, reject) => {
+            const sql = "SELECT *FROM memes";
+            db.all((sql), [], (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(rows);
+            });   
+        });
+    }
+
+    
+    this.createNewMeme = (meme) => {
+        return new Promise((resolve, reject) => {
+            const sql = "INSERT INTO memes (url, description) VALUES (?, ?)";
+            param = [meme.url, meme.description];
+            db.run(sql, param, (err) => {
+                if (err){
+                    reject(err);
+                }
+                resolve(this.lastID)
+            });
+        });
+    } 
+    
+    
+    this.deleteMeme = (id) => {
+        return new Promise((resolve, reject) => {
+            const sql = "DELETE FROM memes WHERE id = ?";
+            db.run(sql, [id], (err) => {
+                if (err){
+                    reject(err);
+                }
+                resolve(this.changes);
+            });
+        
+        });
+    }
+
+
+    this.updateMemeDescription = (id, description) => {
+        return new Promise((resolve, reject) =>{
+            const sql = "UPDATE meme SET description = ? WHERE id = ?";
+            db.run(sql, [description, id], (err) => {
+                if (err){
+                    reject(err);
+                }
+                resolve(this.changes);
+            });
+        });
+    }
+
+}
 // Constructor function for a Caption
 function Caption(id, text) {
     this.id = id;
     this.text = text;
+
+    
+
 }
 
 // Constructor function for a MemeAssociation
