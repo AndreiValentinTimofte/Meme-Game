@@ -325,6 +325,16 @@ Request body:
 
 ### __Delete an existing association__
 
+URL: `api/memes/<memeId>/associations/<captionId>`
+
+HTTP Method: `DELETE`
+
+Description: Delete an existing association for a specific meme.
+
+Response: `204 No Content` (success) or `404 Not Found` (invalid meme ID) or `500 Internal Server Error` (server error).
+
+
+
 
 
 
