@@ -56,3 +56,287 @@ The database for the Meme Game project consists of three main tables:
 - **`captionId`**: INTEGER - Foreign key referencing `captions.id`.
 - **`points`**: INTEGER - The score assigned for this specific meme-caption association (1, 2, or 3).
 - **PRIMARY KEY**: (`memeId`, `captionId`)
+*****
+### API Design:
+###  Memes
+
+The following APIs are designed to support CRUD operations on the meme game data.
+
+###  __List all memes__
+
+URL: `api/memes`
+
+HTTP Method: `GET`
+
+Description: Retrieve a list of all meme pictures.
+
+Response: `200 OK` (success) or `500 Internal Server Error` (error). In case of success, returns an array of meme objects in JSON format. Else, returns an error message.
+
+Response body:
+```json
+[
+    {
+        "id": 1,
+        "url": "./images/distracted-boyfirend.jpg",
+        "description": "..."
+    },
+    ...
+]
+```
+
+###  __Get a single meme__
+
+URL: `api/memes/<id>`
+
+HTTP Method: `GET`
+
+Description: Retrieve a specific meme picture by its `<id>`.
+
+Response: `200 OK` (success) or `404 Not Found` (id not found)or `500 Internal Server Error` (error).
+
+Response body:
+
+```json
+
+{
+    "id": 1,
+    "url": "./images/distracted-boyfirend.jpg",
+    "description": "..."
+}
+
+```
+
+###  __Create a new meme__
+
+URL: `api/memes`
+
+HTTP Method: `POST`
+
+Description: Create a new meme picture.
+
+Response: `201 Created` (success) or `400 Bad Request` (invalid input data) or `500 Internal Server Error` (server error). If the rquest body is not valid, `422 Unprocessable Entity` (validation error)`.
+
+Request body:
+```json
+{
+    "url": "./images/new-meme.jpg",
+    "description": "A new meme."
+}
+```
+
+Response body:
+```json
+{
+    "id": 6,
+    "url": "./images/new-meme.jpg",
+    "description": "A new meme."
+}
+```
+
+###  __Update an existing meme__
+
+URL: `api/memes/<id>`
+
+HTTP Method: `PUT`
+
+Description: Update an existing meme picture.
+
+Response: `200 OK` (success) or `404 Not Found` (invalid input data) or `500 Internal Server Error`(server error).
+
+Request body:
+```json
+{
+    "url": "./images/updated-meme.jpg",
+    "description": "The updated meme."
+}
+```
+
+### __Delete an existing meme__
+
+URL: `api/memes/<id>`
+
+HTTP Method: `DELETE`
+
+Description: Delete an existing meme picture.
+
+Response: `204 No Content` (success) or `404 Not Found` (invalid ID) or `500 Internal Server Error` (server error). 
+
+### Captions
+
+### __List all captions__
+
+URL: `api/captions`
+
+HTTP Method: `GET`
+
+Description: Retrieve a list of all captions.
+
+Response: `200 OK` (success) or `500 Internal Server Error` (error). In case of success, returns an array of caption objects in JSON format. Else, returns an error message.
+
+Response body:
+```json
+[
+    {
+        "id": 1,
+        "text": "Look at my new cat!"
+    },
+    ...
+]
+```
+
+###  __Get a single caption__
+
+URL: `api/captions/<id>`
+
+HTTP Method: `GET`
+
+Description: Retrieve a specific caption by its `<id>`.
+
+Response: `200 OK` (success) or `404 Not Found` (id not found) or `500 Internal Server Error` (error).
+
+Response body:
+```json
+{
+    "id": 1,
+    "text": "Look at my new cat!"
+}
+```
+
+###  __Create a new caption__
+
+URL: `api/captions`
+
+HTTP Method: `POST`
+
+Description: Create a new caption.
+
+Response: `201 Created` (success) or `400 Bad Request` (invalid input data) or `500 Internal Server Error` (server error).
+
+Request body:
+```json
+{
+    "text": "A brand new caption!"
+}
+```
+
+Response body:
+```json
+{
+    "id": 6,
+    "text": "A brand new caption!"
+}
+```
+
+###  __Update an existing caption__
+
+URL: `api/captions/<id>`
+
+HTTP Method: `PUT`
+
+Description: Update an existing caption.
+
+Response: `200 OK` (success) or `400 Bad Request` (invalid input data) or `500 Internal Server Error` (server error).
+
+Rquest body:
+```json
+{
+    "text": "Updated caption text"
+}
+```
+
+###  __Delete an existing caption__
+
+URL: `api/captions/<id>`
+
+HTTP Method: `DELETE`
+
+Description: Delete an existing caption.
+
+Response: `204 No Content` (success) or `404 Not Found` (invalid ID) or `500 Internal Server Error` (server error).
+
+### Associations
+
+### __List all associations for a single meme__
+
+URL: `api/memes/<id>/associations`
+
+HTTP Method: `GET`
+
+Description: Retrieve all associations for a specific meme.
+
+Response: `200 OK` (success) or `404 Not Found` (invalid meme ID) or `500 Internal Server Error` (server error).
+
+Response body:
+```json
+[
+    {
+        "memeId": 1,
+        "captionId": 1,
+        "points": 1
+    },
+    ...
+]      
+```
+
+### __Create a new association__
+
+URL: `api/memes/<memeId>/associations`
+
+HTTP Method: `POST`
+
+Description: Create a new association for a specific meme.
+
+Response: `201 Created` (success) or `400 Bad Request`(invalid input data) or `404 Not Found` (invalid meme ID) or `500 Internal Server Error` (server error).
+
+Request body:
+```json
+{
+    "memeId": 1,
+    "captionId": 107,
+    "points": 1
+}
+```
+
+Response body:
+```json
+{
+    "memeId": 1,
+    "captionId": 107,
+    "points": 1
+}
+```
+
+### __Update an existing association's points__
+
+URL: `api/memes/<memeId>/associations/<captionId>`
+
+HTTP Method: `PUT`
+
+Description: Update the points of an existing association for a specific meme.
+
+Response: `200 OK` (success) or `400 Bad Request`(invalid input data) or `404 Not Found` (invalid meme ID or caption ID, association not found) or `500 Internal Server Error` (server error).
+
+Request body:
+```json
+{
+    "points": 3
+}
+```
+
+### __Delete an existing association__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

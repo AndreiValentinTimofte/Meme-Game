@@ -165,51 +165,53 @@ function MemeAssociation(memeId, captionId, points) {
     }
 }
 
-// Le tue altre funzioni costruttore...
-// Funzione per eseguire i test in sequenza
-async function runTests() {
-    console.log('--- Inizio dei test ---');
+// // Le tue altre funzioni costruttore...
+// // Funzione per eseguire i test in sequenza
+// async function runTests() {
+//     console.log('--- Inizio dei test ---');
 
-    // Crea un'istanza della classe per accedere ai metodi
-    const testMeme = new MemePicture();
+//     // Crea un'istanza della classe per accedere ai metodi
+//     const testMeme = new MemePicture();
 
-    // Test 1: Inserire un nuovo meme
-    console.log('\n- Test: Inserire un nuovo meme');
-    try {
-        const newMeme = { url: './images/temp-test-meme.jpg', description: 'Meme temporaneo per test' };
-        const newMemeId = await testMeme.createNewMeme(newMeme);
-        console.log(`Successo: Nuovo meme creato con ID: ${newMemeId}`);
-    } catch (err) {
-        console.error('Errore nella creazione del meme:', err);
-    }
+//     // Test 1: Inserire un nuovo meme
+//     console.log('\n- Test: Inserire un nuovo meme');
+//     try {
+//         const newMeme = { url: './images/temp-test-meme.jpg', description: 'Meme temporaneo per test' };
+//         const newMemeId = await testMeme.createNewMeme(newMeme);
+//         console.log(`Successo: Nuovo meme creato con ID: ${newMemeId}`);
+//     } catch (err) {
+//         console.error('Errore nella creazione del meme:', err);
+//     }
     
-    // Test 2: Aggiornare la descrizione
-    console.log('\n- Test: Aggiornare la descrizione di un meme');
-    try {
-        const updatedRows = await testMeme.updateMemeDescription(1, 'Updated description for meme 1!');
-        if (updatedRows > 0) {
-            console.log(`Successo: Aggiornate ${updatedRows} riga/e.`);
-        } else {
-            console.log('Attenzione: Nessuna riga aggiornata. L\'ID potrebbe non esistere.');
-        }
-    } catch (err) {
-        console.error('Errore nell\'aggiornamento del meme:', err);
-    }
+//     // Test 2: Aggiornare la descrizione
+//     console.log('\n- Test: Aggiornare la descrizione di un meme');
+//     try {
+//         const updatedRows = await testMeme.updateMemeDescription(1, 'Updated description for meme 1!');
+//         if (updatedRows > 0) {
+//             console.log(`Successo: Aggiornate ${updatedRows} riga/e.`);
+//         } else {
+//             console.log('Attenzione: Nessuna riga aggiornata. L\'ID potrebbe non esistere.');
+//         }
+//     } catch (err) {
+//         console.error('Errore nell\'aggiornamento del meme:', err);
+//     }
     
-    // Test 3: Eliminare un meme
-    console.log('\n- Test: Eliminare un meme (usando un ID fittizio)');
-    try {
-        const deletedRows = await testMeme.deleteMeme(100); // Usiamo un ID che probabilmente non esiste
-        if (deletedRows > 0) {
-            console.log(`Successo: Eliminate ${deletedRows} riga/e.`);
-        } else {
-            console.log('Attenzione: Nessuna riga eliminata. L\'ID potrebbe non esistere.');
-        }
-    } catch (err) {
-        console.error('Errore nell\'eliminazione del meme:', err);
-    }
+//     // Test 3: Eliminare un meme
+//     console.log('\n- Test: Eliminare un meme (usando un ID fittizio)');
+//     try {
+//         const deletedRows = await testMeme.deleteMeme(100); // Usiamo un ID che probabilmente non esiste
+//         if (deletedRows > 0) {
+//             console.log(`Successo: Eliminate ${deletedRows} riga/e.`);
+//         } else {
+//             console.log('Attenzione: Nessuna riga eliminata. L\'ID potrebbe non esistere.');
+//         }
+//     } catch (err) {
+//         console.error('Errore nell\'eliminazione del meme:', err);
+//     }
 
-    console.log('\n--- Fine dei test ---');
-}
+//     console.log('\n--- Fine dei test ---');
+// }
 
-runTests();
+// runTests();
+
+export { MemePicture, Caption, MemeAssociation };
