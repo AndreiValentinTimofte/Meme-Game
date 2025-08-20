@@ -92,7 +92,7 @@ HTTP Method: `GET`
 
 Description: Retrieve a specific meme picture by its `<id>`.
 
-Response: `200 OK` (success) or `404 Not Found` (id not found)or `500 Internal Server Error` (error).
+Response: `200 OK` (success) or `404 Not Found` (id not found)or `500 Internal Server Error` (error). If the rquest body is not valid, `422 Unprocessable Entity` (validation error).
 
 Response body:
 
@@ -114,7 +114,7 @@ HTTP Method: `POST`
 
 Description: Create a new meme picture.
 
-Response: `201 Created` (success) or `400 Bad Request` (invalid input data) or `500 Internal Server Error` (server error). If the rquest body is not valid, `422 Unprocessable Entity` (validation error)`.
+Response: `201 Created` (success) or `400 Bad Request` (invalid input data) or `500 Internal Server Error` (server error). If the rquest body is not valid, `422 Unprocessable Entity`. (validation error)`.
 
 Request body:
 ```json
@@ -332,21 +332,3 @@ HTTP Method: `DELETE`
 Description: Delete an existing association for a specific meme.
 
 Response: `204 No Content` (success) or `404 Not Found` (invalid meme ID) or `500 Internal Server Error` (server error).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
