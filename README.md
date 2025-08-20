@@ -145,8 +145,7 @@ Response: `200 OK` (success) or `404 Not Found` (invalid input data) or `500 Int
 
 Request body:
 ```json
-{
-    "url": "./images/updated-meme.jpg",
+{   
     "description": "The updated meme."
 }
 ```
